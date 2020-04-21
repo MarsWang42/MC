@@ -22,12 +22,12 @@ class HanmaiSpider(scrapy.Spider):
         remove_short_long = filter(lambda item: 20 > len(item) > 2,
             list(only_chinese))
         
-        lyrics = '\\n'.join \
+        lyrics = '\n'.join \
             (filter(None, [x.replace(u'\xa0|-', u'') for x in remove_short_long]))
 
         if '请谨记以下注意事项' not in lyrics and lyrics:
-            with open('a.json', 'a+') as f:
-                    f.write('["' + lyrics + '"]\n')
+            with open('c.txt', 'a+') as f:
+                    f.write(lyrics + '\n')
             self.log('Saved file')
         
         yield {'content': lyrics}
